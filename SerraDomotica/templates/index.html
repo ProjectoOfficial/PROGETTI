@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Serra domotica</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: #F5F5F5;
+        }
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            background-color: #FFFFFF;
+            box-shadow: 0px 0px 5px #888888;
+            padding: 30px;
+            border-radius: 5px;
+        }
+        h1 {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .table {
+            margin-top: 30px;
+        }
+        th {
+            text-align: center;
+        }
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Dati dei sensori</h1>
+        <br />
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center">Temperatura</th>
+                    <th class="text-center">Umidità</th>
+                    <th class="text-center">Pressione</th>
+                    <th class="text-center">THUM1</th>
+                    <th class="text-center">THUM2</th>
+                    <th class="text-center">PPM</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center" id="temp"></td>
+                    <td class="text-center" id="hum"></td>
+                    <td class="text-center" id="press"></td>
+                    <td class="text-center" id="thum1"></td>
+                    <td class="text-center" id="thum2"></td>
+                    <td class="text-center" id="ppm"></td>
+                </tr>
+            </tbody>
+        </table>        
+    </div>
+
+    <br />
+        <iframe class="mx-auto d-block" width="560" height="315" src="https://www.youtube.com/embed/uY5vNXvVsUI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <br />
+
+    <script>
+        $(document).ready(function() {
+          setInterval(function() {
+            $.ajax({
+              url: "/update",
+              dataType: "json",
+              success: function(data) {
+                $("#temp").text(data.temp);
+                $("#hum").text(data.hum);
+                $("#press").text(data.press);
+                $("#thum1").text(data.thum1);
+                $("#thum2").text(data.thum2);
+                $("#ppm").text(data.ppm);
+              }
+            });
+          }, 2000);
+        });
+    </script>
+
+<footer class="mt-auto py-3 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 text-center">
+          <a href="https://www.facebook.com/MiniProjectsOfficial"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Facebook_logo_%28square%29.png/800px-Facebook_logo_%28square%29.png" alt="Facebook" width="40" height="40"></a>
+        </div>
+        <div class="col-md-4 text-center">
+          <a href="https://www.instagram.com/officialprojecto/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/2048px-Instagram_logo_2016.svg.png" alt="Instagram" width="40" height="40"></a>
+        </div>
+        <div class="col-md-4 text-center">
+          <a href="https://www.youtube.com/c/ProjectoOfficial"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube" width="60" height="40"></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center mt-3">
+          <p class="mb-0">Serra Domotica - Progetto finale</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+</body>
+</html>
